@@ -81,17 +81,18 @@
 <div class="loginWrapper">
     <div class="loginLogo"><img src="${pageContext.request.contextPath}/statices/images/loginLogo.png" alt="" /></div>
     <div class="widget">
-        <div class="title"><img src="${pageContext.request.contextPath}/statices/images/icons/dark/files.png" alt="" class="titleIcon" /><h6>Login panel</h6></div>
-        <form action="index.html" id="validate" class="form">
+        <div class="title"><img src="${pageContext.request.contextPath}/statices/images/icons/dark/files.png" alt="" class="titleIcon" /><h6>${empty message?'请登录':message}</h6></div>
+        <form action="${pageContext.request.contextPath}/login_ctrl" id="validate" class="form">
             <div class="formRow">
+            
                     <label for="login">账户:</label>
-                    <div class="loginInput"><input type="text" name="login" class="validate[required]" id="login" /></div>
+                    <div class="loginInput"><input type="text" name="userId" class="validate[required]" id="login" /></div>
                     <div class="clear"></div>
                 </div>
                 
                 <div class="formRow">
                     <label for="pass">密码:</label>
-                    <div class="loginInput"><input type="password" name="password" class="validate[required]" id="pass" /></div>
+                    <div class="loginInput"><input type="password" name="userPsw" class="validate[required]" id="pass" /></div>
                     <div class="clear"></div>
                 </div>
                 
@@ -99,9 +100,8 @@
                     <a href="${pageContext.request.contextPath}/register.jsp"><input type="button" value="注册" class="dredB logMeIn" style="margin-left:20px;"/></a>
                     <input type="submit" value="登录" class="dredB logMeIn" />
                     <a href="#">忘记密码</a>
-                    <div class="clear"></div>
+                   <div class="formRow"></div>
                 </div>
-            </fieldset>
             </fieldset>
         </form>
     </div>

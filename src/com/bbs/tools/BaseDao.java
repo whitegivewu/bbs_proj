@@ -1,75 +1,79 @@
 package com.bbs.tools;
-// 数据库底层类
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 public class BaseDao {
-	// 加载数据库驱动
+	// 加载驱动类
 	static {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (Exception e) {}
+		try {Class.forName("com.mysql.jdbc.Driver");} catch (Exception e) {}
 	}
-	public final static String URL = "jdbc:mysql://localhost:3306/bbs_system?"
-			+ "useUnicode=true&characterEncoding=utf-8";
-	public final static String USER = "root";
-	public final static String PASSWORD = "123";
+	private static String URL = "jdbc:mysql://localhost:3306/bbs_system?useUnicode=true&characterEncoding=UTF-8";
+	private static String USER = "root";// 数据库账户
+	private static String PASSWORD = "123";// 数据库密码
 	/**
 	 * 获取数据库连接
-	 * @return 数据库连接
+	 * @return
+	 * @throws SQLException
 	 */
-	public static Connection getConnection() throws SQLException{
-		Connection conn = null;
-		conn = DriverManager.getConnection(URL, USER, PASSWORD);
-		return conn;
+	public static Connection getCon() throws SQLException{
+		return DriverManager.getConnection(URL, USER, PASSWORD);
 	}
 	/**
-	 * 关闭连接、执行块和结果集
-	 * @param conn
+	 * 关闭方法
+	 * @param con
 	 * @param ps
 	 * @param rs
-	 * @throws SQLException
 	 */
-	public static void close(Connection conn,PreparedStatement ps,ResultSet rs) 
-		throws SQLException{
-		if(rs != null)
-			rs.close();
-		if(ps != null)
-			ps.close();
-		if(conn != null)
-			conn.close();
+	public static void close(Connection con,PreparedStatement ps,ResultSet rs) {
+		try {
+			if(rs != null)
+				rs.close();
+			if(ps != null)
+				ps.close();
+			if(con != null)
+				con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
 	}
 	/**
-	 * 实现查询功能
+	 * 更改内容操作
 	 * @param ps
 	 * @param args
 	 * @return
 	 * @throws SQLException
 	 */
-	public static ResultSet query(PreparedStatement ps,Object[] args) 
+	public static int update(PreparedStatement ps,Object args[]) 
 			throws SQLException{
-		if(args != null) {
-			for(int i=0;i<args.length;i++) {
-				ps.setObject(i+1, args[i]);
-			}
-		}
-		return ps.executeQuery();
-	}
-	/**
-	 * 实现增、删、改功能
-	 * @param ps
-	 * @param args
-	 * @return
-	 */
-	public static int alter(PreparedStatement ps,Object[] args) 
-			throws SQLException{
-		if(args != null) {
-			for(int i=0;i<args.length;i++) {
-				ps.setObject(i+1, args[i]);
-			}
+		// foreach
+		for(int i = 0;i < args.length;i++) {
+			ps.setObject(i+1,args[i]);
 		}
 		return ps.executeUpdate();
 	}
+	/**
+	 * 查询返回结果集
+	 * @param ps
+	 * @param args
+	 * @return
+	 * @throws SQLException
+	 */
+	 public static ResultSet query(PreparedStatement ps,Object[] args) 
+		      throws SQLException{
+		   	if(args != null) {
+		   		for(int i=0;i<args.length;i++) {
+		   			ps.setObject(i+1, args[i]);
+		   		}
+		    }
+		    return ps.executeQuery();
+	}
 }
+
+
+
+
+

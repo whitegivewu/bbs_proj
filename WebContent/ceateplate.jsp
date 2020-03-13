@@ -221,38 +221,31 @@
     <div class="wrapper">
         
         	 <!-- Validation form -->
-        <form id="validate" class="form" method="post" action="${pageContext.request.contextPath}/register">
+        <form id="validate" class="form" method="post" action="">
         	<fieldset>
                 <div class="widget">
                     <div class="title"><img src="${pageContext.request.contextPath}/static/images/icons/dark/alert.png" alt="" class="titleIcon" /></div>
                     <div class="formRow">
-                        <label>账户:<span class="req">*</span></label>
+                        <label>板块名称<span class="req">*</span></label>
                         <div class="formRight"><input type="text" class="validate[required]" name="userId" id="req"/></div><div class="clear"></div>
                     </div>
                     <div class="formRow">
-                        <label>密码:<span class="req">*</span></label>
+                        <label>板块概述<span class="req">*</span></label>
                         <div class="formRight"><input type="password" class="validate[required]" name="userPsw" id="password1" /></div><div class="clear"></div>
                     </div>
                     <div class="formRow">
-                        <label>确认密码:<span class="req">*</span></label>
+                        <label>板块创建人<span class="req">*</span></label>
                         <div class="formRight"><input type="password" class="validate[required,equals[password1]]" name="rePassword" id="password2" /></div><div class="clear"></div>
                     </div>
                     <div class="formRow">
-                        <label>昵称:<span class="req">*</span></label>
+                        <label>板块负责人<span class="req">*</span></label>
                         <div class="formRight"><input type="text" class="validate[required]" name="userAlice" id="minValid"/></div><div class="clear"></div>
                     </div>
                     <div class="formRow">
-                        <label>邮箱:<span class="req">*</span></label>
+                        <label>创建日期<span class="req">*</span></label>
                         <div class="formRight"><input type="text" value="" class="validate[required,custom[email]]" name="userEmail" id="emailValid"/></div><div class="clear"></div>
                     </div>
-                    <div class="formRow">
-                        <label>性别:<span class="req">*</span></label>
-                        <div class="formRight">
-                            <div class="floatL" style="margin: 2px 0 0 0;"><input type="radio" value="男" id="radioReq1" name="userSex" checked="checked" data-prompt-position="topRight:102" /><label for="radioReq1">男</label></div>
-                        	<div class="floatL" style="margin: 2px 0 0 0;"><input type="radio" value="女" id="radioReq2" name="userSex" data-prompt-position="topRight:102" /><label for="radioReq2">女</label></div>
-                        </div><div class="clear"></div>
-                    </div>
-                    <div class="formSubmit"><input type="submit" value="注册" class="redB" /></div>
+                    <div class="formSubmit"><input type="submit" value="创建" class="redB" /></div>
                     <div class="formRow">
                         <label><span class="req">&nbsp;</span></label>
                         <div class="formRight"><input type="text" style="color: red;" value="${message}" readonly="readonly"/></div><div class="clear"></div>
